@@ -1,0 +1,7 @@
+node_modules/
+apps/**/.next
+
+pnpm-lock.yaml
+.env
+.drizzle
+.turbo

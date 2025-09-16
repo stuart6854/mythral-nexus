@@ -1,0 +1,20 @@
+{
+  "name": "@mythral/api",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "echo \"Hono API uses tsx at dev time; no build step yet\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mythral/db": "workspace:*",
+    "hono": "^4.5.0",
+    "@hono/node-server": "^1.12.0",
+    "zod": "^3.23.8",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.4"
+  }
+}
