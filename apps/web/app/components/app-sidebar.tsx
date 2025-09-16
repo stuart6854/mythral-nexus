@@ -2,8 +2,12 @@
 
 import React from 'react';
 import { ChevronDown, HomeIcon, PackageIcon } from 'lucide-react';
-import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@/components/ui/select';
-import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +20,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { DropdownMenuContent, DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
+import ProjectSwitcher from './project-switcher';
 
 const items = [
   {
@@ -32,31 +36,13 @@ const items = [
 ];
 
 export default function AppSideBar() {
+  const projects: string[] = ['Project A', 'Project B'];
   return (
     <Sidebar side='left' variant='sidebar'>
-      <SidebarHeader className='border-sidebar-border h-16 border-b'></SidebarHeader>
+      <SidebarHeader className='border-sidebar-border h-16 border-b'>
+        <ProjectSwitcher projects={projects} />
+      </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <SidebarMenuButton>
-                Select Project <ChevronDown className='ml-auto' />
-              </SidebarMenuButton>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>
-                <span>Project A</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>Project B</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>Project C</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </SidebarGroup>
-        <SidebarSeparator />
         <SidebarGroup>
           <SidebarMenu>
             {items.map((item) => (
