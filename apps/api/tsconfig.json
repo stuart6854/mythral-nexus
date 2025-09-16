@@ -1,4 +1,5 @@
 {
-  "extends": "../../packages/config/tsconfig.base.json",
-  "compilerOptions": { "rootDir": "src" }
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {},
+  "exclude": ["node_modules"]
 }

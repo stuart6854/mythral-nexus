@@ -1,20 +1,20 @@
 {
   "name": "@mythral/api",
-  "version": "0.0.1",
   "type": "module",
-  "private": true,
   "scripts": {
-    "dev": "tsx src/index.ts",
-    "build": "echo \"Hono API uses tsx at dev time; no build step yet\"",
-    "typecheck": "tsc --noEmit"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "dependencies": {
-    "@mythral/db": "workspace:*",
-    "hono": "^4.5.0",
-    "@hono/node-server": "^1.12.0",
-    "zod": "^3.23.8",
-    "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.33.0",
-    "postgres": "^3.4.4"
+    "@hono/node-server": "^1.19.3",
+    "hono": "^4.9.7"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
   }
 }
