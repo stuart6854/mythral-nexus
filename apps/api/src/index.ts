@@ -1,7 +1,7 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 
-import { getProjects, Project } from '@mythral/db';
+import { Project, getProjects, createProject } from '@mythral/db';
 
 const app = new Hono();
 
@@ -21,13 +21,17 @@ api.get('/projects', async (c) => {
 api.post('/projects', async (c) => {
   const body = await c.req.json();
 
-  return c.json({ message: 'Hello API!', data: body });
+  console.log(body);
+
+  const project = await createProject(body);
+
+  return c.json({ message: 'Project created successfully.', data: project });
 });
 
 serve(
   {
     fetch: app.fetch,
-    port: 3003,
+    port: 5005,
   },
   (info) => {
     console.log(`Server is running on http://localhost:${info.port}`);

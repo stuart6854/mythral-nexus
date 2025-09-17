@@ -1,19 +1,20 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "@mythral/typescript-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": "app",
     "paths": {
-      "@/components/*": ["components/*"]
+      "@/components/*": [
+        "components/*"
+      ]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.css",
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
