@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Project } from '@mythral/db';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-export default function ProjectSwitcher({ projects }: { projects: string[] }) {
+export default function ProjectSwitcher({ projects }: { projects: Project[] }) {
   const [selectedProject, setSelectedProject] = useState(projects[0]);
 
   return (
@@ -12,14 +13,14 @@ export default function ProjectSwitcher({ projects }: { projects: string[] }) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton size='lg'>
-              {selectedProject}
+              {selectedProject?.name}
               <ChevronsUpDown className='ml-auto' />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='start' className='w-(--radix-dropdown-menu-trigger-width)'>
             {projects.map((project) => (
-              <DropdownMenuItem key={project} onSelect={() => setSelectedProject(project)}>
-                {project}
+              <DropdownMenuItem key={project.id} onSelect={() => setSelectedProject(project)}>
+                {project.name}
                 {project == selectedProject && <Check className='ml-auto' />}
               </DropdownMenuItem>
             ))}

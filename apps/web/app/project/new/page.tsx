@@ -1,3 +1,5 @@
+import { createProject } from '@/api/projects';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -13,16 +15,10 @@ export default function Page() {
     };
 
     try {
-      const response = await fetch(`${process.env.BACKEND_API_URL!}/api/projects`, {
-        method: 'post',
-        body: JSON.stringify(rawFormData),
-      });
+      const response = await createProject(rawFormData);
 
       if (!response.ok) throw new Error(`Failed to create project: ${response.statusText}`);
       console.log('Project created successfully');
-
-      const data = await response.json();
-      console.log(data);
     } catch (err) {
       console.error(err);
     }

@@ -48,6 +48,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@mythral/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@mythral/ui':
         specifier: workspace:*
         version: link:../../packages/ui
