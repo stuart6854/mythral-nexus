@@ -2,10 +2,15 @@
   "name": "@mythral/db",
   "version": "0.0.0",
   "private": true,
+  "main": "./src/index.js",
   "exports": {
-    "./*": "./src/index.ts"
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
   },
   "scripts": {
+    "db:check": "drizzle-kit check",
     "db:seed": "tsx scripts/seed.ts",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:studio": "drizzle-kit studio",

@@ -1,7 +1,7 @@
 import { relations } from 'drizzle-orm';
-import { pgTable, integer, varchar, text, uuid, timestamp } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, text, uuid, timestamp } from 'drizzle-orm/pg-core';
 
-export const projects = pgTable('projects', {
+export const projectsTable = pgTable('projects', {
   id: uuid().primaryKey().defaultRandom(),
 
   name: text().notNull(),
@@ -11,12 +11,12 @@ export const projects = pgTable('projects', {
   updated_at: timestamp().$onUpdate(() => new Date()),
 });
 
-export const projectRelations = relations(projects, ({ many }) => ({
-  resources: many(resources),
-  packages: many(packages),
+export const projectRelations = relations(projectsTable, ({ many }) => ({
+  resources: many(resourcesTable),
+  packages: many(packagesTable),
 }));
 
-export const resources = pgTable('resources', {
+export const resourcesTable = pgTable('resources', {
   id: uuid().primaryKey().defaultRandom(),
 
   project_id: uuid().notNull(),
@@ -28,15 +28,15 @@ export const resources = pgTable('resources', {
   updated_at: timestamp().$onUpdate(() => new Date()),
 });
 
-export const resourcesRelations = relations(resources, ({ one, many }) => ({
-  projects: one(projects, {
-    fields: [resources.project_id],
-    references: [projects.id],
+export const resourcesRelations = relations(resourcesTable, ({ one, many }) => ({
+  projects: one(projectsTable, {
+    fields: [resourcesTable.project_id],
+    references: [projectsTable.id],
   }),
-  packages: many(packages),
+  packages: many(packagesTable),
 }));
 
-export const packages = pgTable('packages', {
+export const packagesTable = pgTable('packages', {
   id: uuid().primaryKey().defaultRandom(),
 
   project_id: uuid().notNull(),
@@ -47,12 +47,12 @@ export const packages = pgTable('packages', {
   updated_at: timestamp().$onUpdate(() => new Date()),
 });
 
-export const packagesRelations = relations(packages, ({ one, many }) => ({
-  projects: one(projects, {
-    fields: [packages.project_id],
-    references: [projects.id],
+export const packagesRelations = relations(packagesTable, ({ one, many }) => ({
+  projects: one(projectsTable, {
+    fields: [packagesTable.project_id],
+    references: [projectsTable.id],
   }),
-  resources: many(resources),
+  resources: many(resourcesTable),
 }));
 
 export const resourcesToPackages = pgTable('resources_to_packages', {
@@ -61,12 +61,12 @@ export const resourcesToPackages = pgTable('resources_to_packages', {
 });
 
 export const resourcesToPackagesRelations = relations(resourcesToPackages, ({ one }) => ({
-  resources: one(resources, {
+  resources: one(resourcesTable, {
     fields: [resourcesToPackages.resource_id],
-    references: [resources.id],
+    references: [resourcesTable.id],
   }),
-  packages: one(packages, {
+  packages: one(packagesTable, {
     fields: [resourcesToPackages.package_id],
-    references: [packages.id],
+    references: [packagesTable.id],
   }),
 }));
