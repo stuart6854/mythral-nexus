@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm';
+/* import { relations } from 'drizzle-orm';
 import { pgTable, varchar, text, uuid, timestamp } from 'drizzle-orm/pg-core';
 
 export const projectsTable = pgTable('projects', {
@@ -70,3 +70,4 @@ export const resourcesToPackagesRelations = relations(resourcesToPackages, ({ on
     references: [packagesTable.id],
   }),
 }));
+ */

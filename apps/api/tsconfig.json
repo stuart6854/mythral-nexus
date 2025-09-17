@@ -1,5 +1,11 @@
 {
-  "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {},
-  "exclude": ["node_modules"]
+  "extends": "@mythral/typescript-config/base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "outDir": "./dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "./dist"]
 }

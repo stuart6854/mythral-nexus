@@ -2,35 +2,24 @@
   "name": "@mythral/db",
   "version": "0.0.0",
   "private": true,
-  "main": "./src/index.js",
+  "type": "module",
   "exports": {
-    ".": {
-      "import": "./src/index.js",
-      "require": "./src/index.js"
-    }
-  },
-  "scripts": {
-    "db:check": "drizzle-kit check",
-    "db:seed": "tsx scripts/seed.ts",
-    "db:migrate": "tsx scripts/migrate.ts",
-    "db:studio": "drizzle-kit studio",
-    "generate": "drizzle-kit generate:pg"
+    ".": "./src/index.ts"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@mythral/eslint-config": "workspace:*",
+    "@mythral/typescript-config": "workspace:*",
     "@types/node": "^22.18.4",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
-    "drizzle-kit": "^0.31.4",
     "eslint": "^9.35.0",
+    "prisma": "^6.16.2",
     "tsx": "^4.20.5",
     "typescript": "5.9.2"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.1",
+    "@prisma/client": "6.16.2",
     "dotenv": "^17.2.2",
-    "drizzle-orm": "^0.44.5",
     "postgres": "^3.4.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

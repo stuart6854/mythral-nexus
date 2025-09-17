@@ -3,9 +3,10 @@
   "ui": "tui",
   "tasks": {
     "build": {
+      "env": ["DATABASE_URL", "BACKEND_API_URL"],
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -14,6 +15,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "env": ["DATABASE_URL", "BACKEND_API_URL"],
       "cache": false,
       "persistent": true
     }

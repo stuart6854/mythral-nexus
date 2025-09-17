@@ -1,3 +1,9 @@
-import { drizzle } from 'drizzle-orm/neon-http';
+import { PrismaClient } from './generated/prisma/index.js';
 
-export const db = drizzle(process.env.DATABASE_URL!);
+export const prisma = new PrismaClient();
+
+async function getProjects() {
+  return prisma.project.findMany();
+}
+
+export { getProjects };
