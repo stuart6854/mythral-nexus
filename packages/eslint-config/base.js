@@ -27,7 +27,11 @@ export const config = [
   },
   // Import resolver + rules
   {
-    settings: {
+    settings: {},
+    rules: {
+      // Keep import errors surfaces
+      'import/no-unresolved': 'error',
+
       'import/resolver': {
         typescript: {
           // Point to all tsconfigs in monorepo; tweak to your structure
@@ -35,10 +39,6 @@ export const config = [
           alwaysTryTypes: true,
         },
       },
-    },
-    rules: {
-      // Keep import errors surfaces
-      'import/no-unresolved': 'error',
 
       // Group/order imports and place "@/..." as "internal"
       'import/order': [
