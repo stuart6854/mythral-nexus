@@ -14,7 +14,7 @@ api.get('/', (c) => {
 api.get('/projects', async (c) => {
   const projects: Project[] = await getProjects();
 
-  return c.json({ projects });
+  return c.json(projects);
   // return c.text('Hello Projects!');
 });
 
