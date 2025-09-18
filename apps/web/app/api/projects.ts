@@ -15,15 +15,17 @@ export async function getProjectById(id: string) {
 }
 
 export async function createProject({
+  workspaceId,
   name,
   desc,
 }: {
+  workspaceId: string;
   name: string;
   desc: string;
 }) {
   const response = await fetch(`${process.env.BACKEND_API_URL!}/api/projects`, {
     method: 'POST',
-    body: JSON.stringify({ name, desc }),
+    body: JSON.stringify({ workspaceId, name, desc }),
   });
 
   if (!response.ok)
