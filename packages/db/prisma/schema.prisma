@@ -8,11 +8,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Project {
-  id String @id @default(cuid())
+model Workspace {
+  id String @id @unique @default(cuid())
 
-  name        String     @unique
+  name String @unique
+
+  projects Project[]
+}
+
+model Project {
+  id String @id @unique @default(cuid())
+
+  name        String @unique
   description String
+
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  workspaceId String?
   Resource    Resource[]
   Package     Package[]
 }

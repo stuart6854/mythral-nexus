@@ -1,6 +1,5 @@
-'use client';
-
 import React from 'react';
+import { Project } from '@mythral/db';
 import { HomeIcon, PackageIcon } from 'lucide-react';
 import {
   Sidebar,
@@ -13,7 +12,8 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
-import ProjectSwitcher from './project-switcher';
+import ProjectSwitcher from '@/components/project-switcher';
+import { getProjects } from '@/api/projects';
 
 const items = [
   {
@@ -28,12 +28,14 @@ const items = [
   },
 ];
 
-export default function AppSideBar() {
-  const projects: string[] = ['Project A', 'Project B'];
+export default async function AppSideBar({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
+  const projects: Project[] = await getProjects();
   return (
     <Sidebar side='left' variant='sidebar'>
       <SidebarHeader className='border-sidebar-border h-16 border-b'>
-        <ProjectSwitcher projects={projects} />
+        <ProjectSwitcher projects={projects} selectedProjectId={id} />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

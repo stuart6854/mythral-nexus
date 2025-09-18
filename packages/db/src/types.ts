@@ -1,3 +1,3 @@
-import { Project, Resource, Package } from './generated/prisma';
+import { Workspace, Project, Resource, Package } from './generated/prisma';
 
-export type { Project, Resource, Package };
+export type { Workspace, Project, Resource, Package };
