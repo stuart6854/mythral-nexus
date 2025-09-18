@@ -2,6 +2,7 @@ import { getWorkspaces, getWorkspaceById } from '@/api/workspaces';
 import { getProjects, getProjectById } from '@/api/projects';
 import { Workspace, Project } from '@mythral/db';
 
+import Link from 'next/link';
 import {
   BreadcrumbItem,
   BreadcrumbSeparator,
@@ -64,16 +65,18 @@ function WorkspaceBreadcrumb({
   return (
     <BreadcrumbItem>
       <DropdownMenu>
-        {currentWorkspace.name}
+        <Link href={`/${currentWorkspace.id}`}>{currentWorkspace.name}</Link>
         <DropdownMenuTrigger className="flex items-center gap-1 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5">
           <ChevronsUpDownIcon />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
-          {allWorkspaces.map((workspace) => (
-            <DropdownMenuItem key={workspace.id}>
-              {workspace.name}
-            </DropdownMenuItem>
-          ))}
+        <DropdownMenuContent align="end">
+          {allWorkspaces
+            .filter((workspace) => workspace.id !== currentWorkspace.id)
+            .map((workspace) => (
+              <DropdownMenuItem key={workspace.id}>
+                {workspace.name}
+              </DropdownMenuItem>
+            ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </BreadcrumbItem>
@@ -94,10 +97,14 @@ function ProjectBreadcrumb({
         <DropdownMenuTrigger className="flex items-center gap-1 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5">
           <ChevronsUpDownIcon />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
-          {allProjects.map((project) => (
-            <DropdownMenuItem key={project.id}>{project.name}</DropdownMenuItem>
-          ))}
+        <DropdownMenuContent align="end">
+          {allProjects
+            .filter((project) => project.id !== currentProject.id)
+            .map((project) => (
+              <DropdownMenuItem key={project.id}>
+                {project.name}
+              </DropdownMenuItem>
+            ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </BreadcrumbItem>
