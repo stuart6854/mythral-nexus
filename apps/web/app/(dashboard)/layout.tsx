@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import MainBar from '@/components/main-bar';
+import { Toaster } from '@/components/ui/sonner';
 
 export default function DashboardLayout({
   children,
@@ -12,6 +13,7 @@ export default function DashboardLayout({
     <div>
       <MainBar>{breadcrumbs}</MainBar>
       {children}
+      <Toaster position="top-right" expand richColors />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { Workspace, Project } from '@mythral/db';
 
 import { SettingsIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import CreateProjectDialog from './create-project-form';
+import CreateProjectDialog from './create-project-dialog';
 
 export default async function Page({
   params,
