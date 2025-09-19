@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getWorkspaces } from '@/api/workspaces';
-import { getProjects } from '@/api/projects';
 
 export async function middleware(req: NextRequest) {
   const workspaces = await getWorkspaces();
