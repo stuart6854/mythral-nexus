@@ -8,10 +8,9 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "prebuild": "prisma generate",
-    "migrate:deploy": "prisma migrate deploy",
     "build": "tsc -b",
     "lint": "eslint . --max-warnings 0",
+    "postinstall": "prisma generate && prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
