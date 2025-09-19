@@ -7,7 +7,9 @@
     ".": "./src/index.ts"
   },
   "scripts": {
+    "prebuild": "prisma generate",
     "build": "tsc -b",
+    "postinstall": "prisma generate",
     "lint": "eslint . --max-warnings 0",
     "db:seed": "tsx prisma/seed.ts"
   },

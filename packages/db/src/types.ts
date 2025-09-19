@@ -1,8 +1,3 @@
-import {
-  Workspace,
-  Project,
-  Resource,
-  Package,
-} from './generated/prisma/index.js';
+import { Workspace, Project, Resource, Package } from '@prisma/client';
 
 export type { Workspace, Project, Resource, Package };
