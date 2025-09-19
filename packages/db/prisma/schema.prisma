@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  // output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -9,47 +8,36 @@ datasource db {
 }
 
 model Workspace {
-  id String @id @unique @default(cuid())
-
-  name String @unique
-
+  id       String    @id @unique @default(cuid())
+  name     String    @unique
   projects Project[]
 }
 
 model Project {
-  id String @id @unique @default(cuid())
-
-  name        String @unique
+  id          String     @id @unique @default(cuid())
+  name        String     @unique
   description String
-
-  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
   workspaceId String?
-  Resource    Resource[]
   Package     Package[]
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  Resource    Resource[]
 }
 
 model Resource {
-  id String @id @default(cuid())
-
-  name String @unique
-
-  type String
-
+  id        String    @id @default(cuid())
+  name      String    @unique
+  type      String
   projectId String
-  project   Project @relation(fields: [projectId], references: [id])
-
-  Package   Package[]
   packageId String[]
+  project   Project   @relation(fields: [projectId], references: [id])
+  Package   Package[] @relation("PackageToResource")
 }
 
 model Package {
-  id String @id @default(cuid())
-
-  name        String @unique
+  id          String     @id @default(cuid())
+  name        String     @unique
   description String
-
-  projectId String
-  project   Project @relation(fields: [projectId], references: [id])
-
-  resources Resource[]
+  projectId   String
+  project     Project    @relation(fields: [projectId], references: [id])
+  resources   Resource[] @relation("PackageToResource")
 }
