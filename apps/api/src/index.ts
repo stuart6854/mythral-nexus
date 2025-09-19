@@ -24,7 +24,7 @@ app.get('/', (c) => {
 
 const api = app.basePath('/api');
 
-/* api.get('/workspaces', async (c) => {
+api.get('/workspaces', async (c) => {
   const workspaces: Workspace[] = await getWorkspaces();
   return c.json(workspaces);
 });
@@ -66,5 +66,5 @@ api.post('/projects', async (c) => {
   const project = await createProject(body);
   return c.json({ message: 'Project created successfully.', project });
 });
- */
+
 export default app;
