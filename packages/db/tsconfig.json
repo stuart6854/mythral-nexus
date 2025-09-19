@@ -1,8 +1,8 @@
 {
   "extends": "@mythral/typescript-config/base.json",
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "dist"
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

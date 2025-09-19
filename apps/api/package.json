@@ -2,10 +2,8 @@
   "name": "@mythral/api",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "lint": "eslint . --max-warnings 0"
+    "dev": "srvx --port=5005",
+    "start": "srv --prod"
   },
   "dependencies": {
     "@mythral/db": "workspace:*",
@@ -15,7 +13,7 @@
     "@mythral/eslint-config": "workspace:*",
     "@mythral/typescript-config": "workspace:*",
     "@types/node": "^20.19.16",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "srvx": "^0.8.7"
   }
 }

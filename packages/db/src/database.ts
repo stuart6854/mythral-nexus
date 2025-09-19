@@ -34,13 +34,7 @@ export async function getProjectById(id: string) {
   });
 }
 
-export async function createProject({
-  name,
-  desc,
-}: {
-  name: string;
-  desc: string;
-}) {
+export async function createProject({ name, desc }: { name: string; desc: string }) {
   return prisma.project.create({
     data: {
       name: name,

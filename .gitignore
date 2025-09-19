@@ -26,7 +26,9 @@ coverage
 out/
 build
 dist
-*.d.ts*
+
+#Prisma
+generated/
 
 # Debug
 npm-debug.log*
@@ -36,5 +38,3 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
-
-/generated/prisma

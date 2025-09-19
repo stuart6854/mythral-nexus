@@ -1,22 +1,15 @@
 import { Hono } from 'hono';
 
 import {
-  Workspace,
   getWorkspaces,
   getWorkspaceById,
   createWorkspace,
-  Project,
   getProjects,
   getProjectById,
   createProject,
 } from '@mythral/db';
-// import { cors } from 'hono/cors';
-
-// export const config = { runtime: 'nodejs20.x' }; // serverless functions
 
 const app = new Hono();
-
-// app.use(cors());
 
 app.get('/', (c) => {
   return c.text('Hello! This is the Mythral Nexus backend API!');
@@ -25,12 +18,12 @@ app.get('/', (c) => {
 const api = app.basePath('/api');
 
 api.get('/workspaces', async (c) => {
-  const workspaces: Workspace[] = await getWorkspaces();
+  const workspaces = await getWorkspaces();
   return c.json(workspaces);
 });
 
 api.get('/workspaces/:id', async (c) => {
-  const workspace: Workspace | null = await getWorkspaceById(c.req.param('id'));
+  const workspace = await getWorkspaceById(c.req.param('id'));
   console.log('Fetching workspace:', workspace);
   return c.json(workspace);
 });
@@ -48,12 +41,12 @@ api.post('/workspaces', async (c) => {
 });
 
 api.get('/projects', async (c) => {
-  const projects: Project[] = await getProjects();
+  const projects = await getProjects();
   return c.json(projects);
 });
 
 api.get('/projects/:id', async (c) => {
-  const project: Project | null = await getProjectById(c.req.param('id'));
+  const project = await getProjectById(c.req.param('id'));
   console.log('Fetching project:', project);
   return c.json(project);
 });

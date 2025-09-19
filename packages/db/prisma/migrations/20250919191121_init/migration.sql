@@ -1,6 +1,3 @@
--- CreateSchema
-CREATE SCHEMA IF NOT EXISTS "public";
-
 -- CreateTable
 CREATE TABLE "public"."Workspace" (
     "id" TEXT NOT NULL,
@@ -83,4 +80,3 @@ ALTER TABLE "public"."_PackageToResource" ADD CONSTRAINT "_PackageToResource_A_f
 
 -- AddForeignKey
 ALTER TABLE "public"."_PackageToResource" ADD CONSTRAINT "_PackageToResource_B_fkey" FOREIGN KEY ("B") REFERENCES "public"."Resource"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
