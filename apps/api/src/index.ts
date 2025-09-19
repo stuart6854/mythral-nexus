@@ -10,19 +10,21 @@ import {
   getProjectById,
   createProject,
 } from '@mythral/db';
-import { cors } from 'hono/cors';
+// import { cors } from 'hono/cors';
+
+// export const config = { runtime: 'nodejs20.x' }; // serverless functions
 
 const app = new Hono();
 
-app.use(cors());
+// app.use(cors());
+
+app.get('/', (c) => {
+  return c.text('Hello! This is the Mythral Nexus backend API!');
+});
 
 const api = app.basePath('/api');
 
-api.get('/', (c) => {
-  return c.text('Hello Hono!');
-});
-
-api.get('/workspaces', async (c) => {
+/* api.get('/workspaces', async (c) => {
   const workspaces: Workspace[] = await getWorkspaces();
   return c.json(workspaces);
 });
@@ -64,5 +66,5 @@ api.post('/projects', async (c) => {
   const project = await createProject(body);
   return c.json({ message: 'Project created successfully.', project });
 });
-
+ */
 export default app;
