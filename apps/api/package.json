@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@mythral/db": "workspace:*",
-    "@hono/node-server": "^1.19.3",
     "hono": "^4.9.7"
   },
   "devDependencies": {

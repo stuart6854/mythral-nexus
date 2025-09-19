@@ -1,4 +1,3 @@
-import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 
 import {
@@ -11,8 +10,11 @@ import {
   getProjectById,
   createProject,
 } from '@mythral/db';
+import { cors } from 'hono/cors';
 
 const app = new Hono();
+
+app.use(cors());
 
 const api = app.basePath('/api');
 
@@ -63,12 +65,4 @@ api.post('/projects', async (c) => {
   return c.json({ message: 'Project created successfully.', project });
 });
 
-serve(
-  {
-    fetch: app.fetch,
-    port: 5005,
-  },
-  (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
-  },
-);
+export default app;
