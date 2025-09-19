@@ -2,8 +2,7 @@
   "name": "@mythral/api",
   "type": "module",
   "scripts": {
-    "dev": "srvx --port=5005",
-    "start": "srv --prod"
+    "dev": "srvx --port=5005"
   },
   "dependencies": {
     "@mythral/db": "workspace:*",
