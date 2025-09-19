@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { submitCreateProjectForm } from '@/actions/actions';
 
 import {
@@ -16,36 +17,17 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
+const initialState = { error: undefined as string | undefined };
+
 export default function CreateProjectDialog({
   workspaceId,
 }: {
   workspaceId: string;
 }) {
-  const [state, action, isLoading] = useActionState(submitCreateProjectForm, {
-    name: '',
-    desc: '',
-    status: null,
-    message: null,
-  });
+  const [state, action] = useActionState(submitCreateProjectForm, initialState);
 
-  /* async function createProjectAction(formData: FormData) {
-    'use server';
-    console.log('Create project');
-
-    const promise = createProject({
-      workspaceId: workspaceId,
-      name: formData.get('name') as string,
-      desc: formData.get('desc') as string,
-    });
-
-    setOpen(false);
-
-    toast.promise(promise, {
-      loading: 'Creating project...',
-      success: 'Project created successfully!',
-      error: 'Error creating project.',
-    });
-  } */
+  const [name, setName] = React.useState('');
+  const [desc, setDesc] = React.useState('');
 
   return (
     <Dialog>
@@ -66,7 +48,9 @@ export default function CreateProjectDialog({
                 id="name"
                 name="name"
                 placeholder="Enter a project name"
-                defaultValue={state?.name}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
               />
             </div>
             <div className="grid gap-3">
@@ -75,23 +59,28 @@ export default function CreateProjectDialog({
                 id="desc"
                 name="desc"
                 placeholder="Enter a description for the project"
-                defaultValue={state?.desc}
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
               />
             </div>
           </div>
           <DialogFooter className="pt-4">
-            <Button type="submit">
-              {isLoading ? 'Creating...' : 'Create'}
-            </Button>
-
-            {state && (
-              <p className="text-red-500">
-                {state.status === 'error' ? state.message : null}
-              </p>
-            )}
+            <SubmitButton />
+            <div>
+              {state?.error && <p className="text-red-500">{state.error}</p>}
+            </div>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" disabled={pending}>
+      {pending ? 'Creating...' : 'Create'}
+    </Button>
   );
 }

@@ -1,45 +1,41 @@
 'use server';
 
 import { createProject } from '@/api/projects';
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+type State = { error?: string };
+
 export async function submitCreateProjectForm(
-  prevState: any,
+  _prevState: State,
   formData: FormData,
-) {
+): Promise<State> {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  console.log(formData);
-  const workspaceId = formData.get('workspaceId') as string;
-  const name = formData.get('name') as string;
-  const desc = formData.get('desc') as string;
+  let workspaceId = '';
+  let projectId = '';
 
-  const response = await createProject({
-    workspaceId: workspaceId,
-    name: name,
-    desc: desc,
-  });
+  try {
+    workspaceId = formData.get('workspaceId') as string;
+    const name = formData.get('name') as string;
+    const desc = formData.get('desc') as string;
 
-  console.log('Test: ', response);
+    if (!name) {
+      return { error: 'Please provide a name.' };
+    }
 
-  //   setOpen(false);
+    const response = await createProject({
+      workspaceId: workspaceId,
+      name: name,
+      desc: desc,
+    });
+    projectId = response.project.id;
+  } catch (err) {
+    if (err instanceof Error) {
+      return { error: err.message };
+    }
 
-  /* toast.promise(promise, {
-    loading: 'Creating project...',
-    success: 'Project created successfully!',
-    error: 'Error creating project.',
-  }); */
+    return { error: 'Could not create project. Please try again.' };
+  }
 
-  const project = response.project;
-
-  revalidatePath(`/${workspaceId}`);
-  redirect(`/${workspaceId}/${project.id}`);
-
-  /* return {
-    name,
-    desc,
-    status: 'success',
-    message: null,
-  }; */
+  redirect(`/${workspaceId}/${projectId}`);
 }
