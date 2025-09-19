@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc -b",
     "lint": "eslint . --max-warnings 0",
-    "postinstall": "prisma generate && prisma migrate deploy",
+    "postinstall": "prisma generate  --schema=./prisma/schema.prisma && prisma migrate deploy --schema=./prisma/schema.prisma",
     "db:seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
