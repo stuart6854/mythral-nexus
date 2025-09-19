@@ -4,10 +4,7 @@ import { getProjects } from '@/api/projects';
 
 export async function middleware(req: NextRequest) {
   const workspaces = await getWorkspaces();
-  const projects = await getProjects();
-  return NextResponse.redirect(
-    new URL(`/${workspaces[0].id}/${projects[0].id}`, req.url),
-  );
+  return NextResponse.redirect(new URL(`/${workspaces[0].id}`, req.url));
 }
 
 export const config = {

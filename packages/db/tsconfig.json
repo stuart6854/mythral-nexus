@@ -1,5 +1,8 @@
 {
   "extends": "@mythral/typescript-config/base.json",
-  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
+  "include": ["src", "prisma"],
   "exclude": ["node_modules"]
 }

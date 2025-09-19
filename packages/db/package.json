@@ -7,6 +7,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
+    "build": "tsc -b",
     "lint": "eslint . --max-warnings 0",
     "db:seed": "tsx prisma/seed.ts"
   },
