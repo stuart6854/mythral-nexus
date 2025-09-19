@@ -8,7 +8,7 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "prebuild": "prisma generate",
+    "prebuild": "prisma generate && prisma migrate deploy",
     "build": "tsc -b",
     "postinstall": "prisma generate",
     "lint": "eslint . --max-warnings 0",
