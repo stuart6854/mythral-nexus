@@ -57,10 +57,10 @@ api.get('/projects/:id', async (c) => {
 api.post('/projects', async (c) => {
   const body = await c.req.json();
 
-  console.log(body);
+  console.log('Creating project: ', body);
 
   const project = await createProject(body);
-  return c.json({ message: 'Project created successfully.', data: project });
+  return c.json({ message: 'Project created successfully.', project });
 });
 
 serve(

@@ -30,5 +30,6 @@ export async function createProject({
 
   if (!response.ok)
     throw new Error(`Failed to create project: ${response.statusText}`);
-  return response.json();
+
+  return await response.json();
 }
