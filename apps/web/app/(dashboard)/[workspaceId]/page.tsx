@@ -5,9 +5,16 @@ import { getWorkspaceById } from '@/api/workspaces';
 import { getProjects } from '@/api/projects';
 import { Workspace, Project } from '@mythral/db';
 
-import { SettingsIcon } from 'lucide-react';
+import { EllipsisIcon, SettingsIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CreateProjectDialog from './create-project-dialog';
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 export default async function Page({
   params,
@@ -21,7 +28,7 @@ export default async function Page({
 
   return (
     <div className="p-4">
-      <div className="flex justify-between text-xl font-semibold pb-2">
+      <div className="flex justify-between text-xl font-semibold pb-4">
         <div>{workspace.name}</div>
         <div className="flex gap-2">
           <Button variant="outline">
@@ -30,13 +37,29 @@ export default async function Page({
           <CreateProjectDialog workspaceId={workspaceId} />
         </div>
       </div>
-      <div className="flex p-4 border-4 rounded-lg">
+      <div className="grid grid-cols-3 gap-6 p-4 border-4 rounded-lg">
         {projects.map((project) => (
           <Link href={`/${workspaceId}/${project.id}`} key={project.id}>
-            <div key={project.id}>{project.name}</div>
+            <ProjectCard key={project.id} project={project} />
           </Link>
         ))}
       </div>
     </div>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <Card className="rounded-lg">
+      <CardHeader>
+        <CardTitle>{project.name}</CardTitle>
+        <CardDescription>{project.description}</CardDescription>
+        <CardAction>
+          <Button variant="ghost">
+            <EllipsisIcon />
+          </Button>
+        </CardAction>
+      </CardHeader>
+    </Card>
   );
 }
