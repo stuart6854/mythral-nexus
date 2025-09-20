@@ -8,7 +8,7 @@ export default async function Page({
   const { workspaceId, projectId } = await params;
   return (
     <div>
-      Workspace '{workspaceId}' / Project '{projectId}'
+      Workspace &apos;{workspaceId}&apos; / Project &apos;{projectId}&apos;
     </div>
   );
 }

@@ -5,10 +5,7 @@ import { redirect } from 'next/navigation';
 
 type State = { error?: string };
 
-export async function submitCreateProjectForm(
-  _prevState: State,
-  formData: FormData,
-): Promise<State> {
+export async function submitCreateProjectForm(_prevState: State, formData: FormData): Promise<State> {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   let workspaceId = '';
@@ -28,7 +25,7 @@ export async function submitCreateProjectForm(
       name: name,
       desc: desc,
     });
-    projectId = response.project.id;
+    projectId = response.id;
   } catch (err) {
     if (err instanceof Error) {
       return { error: err.message };
