@@ -1,3 +1,4 @@
-export * from './client.js';
-export * from './db/schema.js';
-export * from './actions.js';
+export * from './database.js';
+export * from './schema.js';
+export * from './types.js';
+export * from 'drizzle-orm';

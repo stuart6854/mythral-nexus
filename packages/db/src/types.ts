@@ -1,7 +1,8 @@
-import { workspacesTable, projectsTable } from './db/schema.js';
+import { InferSelectModel, InferInsertModel } from 'drizzle-orm';
+import { workspaces, projects } from './schema.js';
 
-export type NewWorkspace = typeof workspacesTable.$inferInsert;
-export type Workspace = typeof workspacesTable.$inferSelect;
+export type Workspace = InferSelectModel<typeof workspaces>;
+export type NewWorkspace = InferInsertModel<typeof workspaces>;
 
-export type NewProject = typeof projectsTable.$inferInsert;
-export type Project = typeof projectsTable.$inferSelect;
+export type Project = InferSelectModel<typeof projects>;
+export type NewProject = InferInsertModel<typeof projects>;

@@ -1,14 +1,14 @@
 import 'dotenv/config';
 import { db } from './index.js';
-import { workspacesTable, projectsTable } from './db/schema.js';
+import { workspaces, projects } from './schema.js';
 
-type Workspace = typeof workspacesTable.$inferInsert;
-type Project = typeof projectsTable.$inferInsert;
+type Workspace = typeof workspaces.$inferInsert;
+type Project = typeof projects.$inferInsert;
 
 const cleanUp = async () => {
   // clean up before the seeding (optional)
-  await db.delete(workspacesTable);
-  await db.delete(projectsTable);
+  await db.delete(workspaces);
+  await db.delete(projects);
 };
 
 const seed = async () => {
@@ -16,14 +16,14 @@ const seed = async () => {
 
   const workspace = (
     await db
-      .insert(workspacesTable)
+      .insert(workspaces)
       .values({
         name: 'Default Workspace',
       })
       .returning()
   )[0]!;
 
-  await db.insert(projectsTable).values({
+  await db.insert(projects).values({
     name: 'Default Project',
     desc: 'This is the default project',
     workspaceId: workspace.id,

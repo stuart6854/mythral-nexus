@@ -1,7 +1,7 @@
 import { relations } from 'drizzle-orm';
 import { pgTable, uuid, varchar, timestamp } from 'drizzle-orm/pg-core';
 
-export const workspacesTable = pgTable('workspaces', {
+export const workspaces = pgTable('workspaces', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
 
   name: varchar('name').notNull(),
@@ -10,11 +10,11 @@ export const workspacesTable = pgTable('workspaces', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
-export const workspacesRelations = relations(workspacesTable, ({ many }) => ({
-  projects: many(projectsTable),
+export const workspacesRelations = relations(workspaces, ({ many }) => ({
+  projects: many(projects),
 }));
 
-export const projectsTable = pgTable('projects', {
+export const projects = pgTable('projects', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
 
   name: varchar('name').notNull(),
@@ -25,12 +25,12 @@ export const projectsTable = pgTable('projects', {
 
   workspaceId: uuid('workspace_id')
     .notNull()
-    .references(() => workspacesTable.id, { onDelete: 'cascade' }),
+    .references(() => workspaces.id, { onDelete: 'cascade' }),
 });
 
-export const projectsRelations = relations(projectsTable, ({ one }) => ({
-  workspace: one(workspacesTable, {
-    fields: [projectsTable.workspaceId],
-    references: [workspacesTable.id],
+export const projectsRelations = relations(projects, ({ one }) => ({
+  workspace: one(workspaces, {
+    fields: [projects.workspaceId],
+    references: [workspaces.id],
   }),
 }));
