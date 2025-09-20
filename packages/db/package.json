@@ -21,13 +21,11 @@
     "@types/node": "^22.18.4",
     "drizzle-kit": "^0.31.4",
     "eslint": "^9.35.0",
-    "prisma": "^6.16.2",
     "tsx": "^4.20.5",
     "typescript": "5.9.2"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
-    "@prisma/client": "6.16.2",
     "dotenv": "^17.2.2",
     "drizzle-orm": "^0.44.5",
     "postgres": "^3.4.7"
