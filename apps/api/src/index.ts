@@ -23,16 +23,14 @@ api.get('/workspaces', async (c) => {
 });
 
 api.get('/workspaces/:id', async (c) => {
-  const workspace = await getWorkspaceById(c.req.param('id'));
-  console.log('Fetching workspace:', workspace);
+  const id = c.req.param('id') as string;
+  const workspace = await getWorkspaceById(id);
+  console.log(`Fetching workspace: ${id}`);
   return c.json(workspace);
 });
 
 api.post('/workspaces', async (c) => {
   const body = await c.req.json();
-
-  console.log(body);
-
   const workspace = await createWorkspace(body);
   return c.json({
     message: 'Workspace created successfully.',
@@ -46,16 +44,14 @@ api.get('/projects', async (c) => {
 });
 
 api.get('/projects/:id', async (c) => {
-  const project = await getProjectById(c.req.param('id'));
-  console.log('Fetching project:', project);
+  const id = c.req.param('id') as string;
+  const project = await getProjectById(id);
+  console.log(`Fetching project: ${id}`);
   return c.json(project);
 });
 
 api.post('/projects', async (c) => {
   const body = await c.req.json();
-
-  console.log('Creating project: ', body);
-
   const project = await createProject(body);
   return c.json({ message: 'Project created successfully.', project });
 });
