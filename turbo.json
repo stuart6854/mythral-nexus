@@ -2,8 +2,8 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
   "tasks": {
-    "db:generate": { "cache": false },
-    "db:migrate": { "cache": false, "persistent": true },
+    "db:generate": { "env": ["DATABASE_URL"], "cache": false },
+    "db:migrate": { "env": ["DATABASE_URL"], "cache": false, "persistent": true },
     "db:deploy": { "cache": false },
     "db:seed": { "cache": false },
     "build": {
