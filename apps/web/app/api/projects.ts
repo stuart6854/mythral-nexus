@@ -5,7 +5,7 @@ export type { Project, NewProject };
 export async function getProjects(): Promise<Project[]> {
   const response = await fetch(`${process.env.BACKEND_API_URL!}/api/projects`);
   if (!response.ok) throw new Error(`Failed to fetch projects: ${response.statusText}`);
-  return response.json();
+  return await response.json();
 }
 
 export async function getProjectById(id: string): Promise<Project> {
@@ -19,8 +19,6 @@ export async function createProject(project: NewProject): Promise<Project> {
     method: 'POST',
     body: JSON.stringify(project),
   });
-
   if (!response.ok) throw new Error(`Failed to create project: ${response.statusText}`);
-
   return await response.json();
 }

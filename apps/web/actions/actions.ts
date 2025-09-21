@@ -20,12 +20,13 @@ export async function submitCreateProjectForm(_prevState: State, formData: FormD
       return { error: 'Please provide a name.' };
     }
 
-    const response = await createProject({
+    const project = await createProject({
       workspaceId: workspaceId,
       name: name,
       desc: desc,
     });
-    projectId = response.id;
+    console.log('Created project:', project);
+    projectId = project.id;
   } catch (err) {
     if (err instanceof Error) {
       return { error: err.message };
@@ -34,5 +35,6 @@ export async function submitCreateProjectForm(_prevState: State, formData: FormD
     return { error: 'Could not create project. Please try again.' };
   }
 
+  console.log(`Redirecting to /${workspaceId}/${projectId}`);
   redirect(`/${workspaceId}/${projectId}`);
 }
