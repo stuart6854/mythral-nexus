@@ -72,6 +72,15 @@ api.post('/projects', async (c) => {
   return c.json(data[0]);
 });
 
+api.delete('/projects/:id', async (c) => {
+  const id = c.req.param('id') as string;
+  console.log(`Deleting project: ${id}`);
+  await db.delete(projects).where(eq(projects.id, id));
+
+  console.log(`Project deleted with ID: ${id}`);
+  return c.json({ message: 'Project deleted successfully' });
+});
+
 // Error handling middleware
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
