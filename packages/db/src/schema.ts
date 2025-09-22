@@ -28,9 +28,30 @@ export const projects = pgTable('projects', {
     .references(() => workspaces.id, { onDelete: 'cascade' }),
 });
 
-export const projectsRelations = relations(projects, ({ one }) => ({
+export const projectsRelations = relations(projects, ({ one, many }) => ({
   workspace: one(workspaces, {
     fields: [projects.workspaceId],
     references: [workspaces.id],
+  }),
+  resources: many(resources),
+}));
+
+export const resources = pgTable('resources', {
+  id: uuid('id').primaryKey().notNull().defaultRandom(),
+
+  type: varchar('type').notNull(),
+
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+
+  projectId: uuid('project_id')
+    .notNull()
+    .references(() => projects.id, { onDelete: 'cascade' }),
+});
+
+export const resourcesRelations = relations(resources, ({ one }) => ({
+  project: one(projects, {
+    fields: [resources.projectId],
+    references: [projects.id],
   }),
 }));
