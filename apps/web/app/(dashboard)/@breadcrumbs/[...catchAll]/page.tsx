@@ -15,10 +15,10 @@ export default async function BreadcrumbSlot({ params }: { params: { catchAll: s
   const { catchAll } = await params;
   const segments = catchAll || [];
 
-  const workspaceId = segments[0] || null;
+  const workspaceId = segments.length >= 1 ? segments[0] : null;
   const workspace = workspaceId ? await getWorkspaceById(workspaceId) : null;
 
-  const projectId = segments[1] || null;
+  const projectId = segments.length == 2 ? segments[1] : null;
   const project = projectId ? await getProjectById(projectId) : null;
 
   const allWorkspaces = await getWorkspaces();
