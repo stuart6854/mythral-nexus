@@ -10,7 +10,7 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getProjectById(id: string): Promise<Project> {
   const response = await fetch(`${process.env.BACKEND_API_URL!}/api/projects/${id}`);
-  if (!response.ok) throw new Error(`Failed to fetch project ${id}: ${response.statusText}`);
+  if (!response.ok) throw new Error(`Failed to fetch project '${id}': ${response.statusText}`);
   return response.json();
 }
 
