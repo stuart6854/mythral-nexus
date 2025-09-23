@@ -5,19 +5,12 @@
     "paths": {
       "@/api/*": ["app/api/*"],
       "@/actions/*": ["actions/*"],
-      "@/components/*": ["app/components/*"]
+      "@/components/*": ["components/*"]
     },
     "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.css",
-    "next-env.d.ts",
-    "next.config.js",
-    ".next/types/**/*.ts"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.css", "next-env.d.ts", "next.config.js", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
