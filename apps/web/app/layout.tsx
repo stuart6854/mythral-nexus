@@ -17,7 +17,7 @@ export default function RootLayout({
   modals,
 }: Readonly<{
   children: ReactNode;
-  modal: ReactNode;
+  modals: ReactNode;
 }>) {
   return (
     <html lang='en'>
