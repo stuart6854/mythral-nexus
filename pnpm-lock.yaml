@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      dotenv:
+        specifier: ^17.2.2
+        version: 17.2.2
     devDependencies:
       prettier:
         specifier: ^3.6.2
@@ -26,12 +30,18 @@ importers:
       '@aws-sdk/s3-request-presigner':
         specifier: ^3.893.0
         version: 3.893.0
+      '@hono/node-server':
+        specifier: ^1.19.4
+        version: 1.19.4(hono@4.9.7)
       '@mythral/db':
         specifier: workspace:*
         version: link:../../packages/db
       hono:
         specifier: ^4.9.7
         version: 4.9.7
+      tsx:
+        specifier: ^4.20.5
+        version: 4.20.5
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -772,6 +782,12 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@hono/node-server@1.19.4':
+    resolution: {integrity: sha512-AWKQZ/YkHUBSHeL/5Ld8FWgUs6wFf4TxGYxqp9wLZxRdFuHBpXmgOq+CuDoL4vllkZLzovCf5HBJnypiy3EtHA==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: ^4
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4090,6 +4106,10 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@hono/node-server@1.19.4(hono@4.9.7)':
+    dependencies:
+      hono: 4.9.7
 
   '@humanfs/core@0.19.1': {}
 
